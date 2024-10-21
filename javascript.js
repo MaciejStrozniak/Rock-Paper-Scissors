@@ -48,40 +48,40 @@ function playRound(humanChoice, computerChoice) {
 
     if(humanChoice === `rock`){
         switch(computerChoice) {
-            case `rock`:
-                roundScore = `draw`;
+            case 'rock':
+                roundScore = 'draw';
                 break;
-            case `paper`:
-                roundScore = `computer`
+            case 'paper':
+                roundScore = 'computer';
                 break;
             case 'scissors':
-                roundScore = 'human'
+                roundScore = 'human';
                 break;
         }
     }
-    else if(humanChoice === `paper`){
+    else if(humanChoice === 'paper'){
         switch(computerChoice) {
-            case `rock`:
-                roundScore = `human`;
+            case 'rock':
+                roundScore = 'human';
                 break;
-            case `paper`:
-                roundScore = `draw`
+            case 'paper':
+                roundScore = 'draw';
                 break;
             case 'scissors':
-                roundScore = 'computer'
+                roundScore = 'computer';
                 break;
         }
     }
     else {
         switch(computerChoice) {
-            case `rock`:
-                roundScore = `computer`;
+            case 'rock':
+                roundScore = 'computer';
                 break;
-            case `paper`:
-                roundScore = `human`
+            case 'paper':
+                roundScore = 'human';
                 break;
             case 'scissors':
-                roundScore = 'draw'
+                roundScore = 'draw';
                 break;
         }
     }
@@ -94,6 +94,7 @@ function playRound(humanChoice, computerChoice) {
         case 'computer':
             computerScore ++;
             alert('You lose! :(');
+            break;
         case 'draw':
             alert('Draw!');
             break;            
@@ -103,10 +104,11 @@ function playRound(humanChoice, computerChoice) {
 function playGame() {
     let round = 1;
     let isPlaying = true;
+    let newGame = true;
 
     while(isPlaying) {
         
-        if(round <= 2) {
+        if(round <= 5) {
             humanSelection = getHumanChoice();
             computerSelection = getComputerChoice();
             playRound(humanSelection, computerSelection);        
@@ -121,6 +123,20 @@ function playGame() {
         alert('COMPUTER WON!')
     else
         alert(`That's a draw!`);
+
+    while(newGame) {
+        let input = prompt(`Do You want to play again? Y/N`);
+        input = input.toLowerCase();
+
+        if(input === 'y')
+            playGame();
+        else if (input === 'n') {
+            newGame = !newGame;
+            alert(`That's it for today`);
+        }
+            else
+            alert(`Wrong answer. Try again.`);
+    }
 }
 
 playGame();

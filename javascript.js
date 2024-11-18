@@ -1,3 +1,6 @@
+
+// TESTING NEW BRANCH ON GITHUB
+
 let log = console.log;
 let humanScore = 0;
 let computerScore = 0;

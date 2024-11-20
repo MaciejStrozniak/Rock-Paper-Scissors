@@ -32,15 +32,10 @@ function getHumanChoice() {
         humChoice = humChoice.toLowerCase();
 
         if (humChoice === "rock" || humChoice === "paper" || humChoice === "scissors") {            
-
             condition = false;
             alert(`You chose: ${humChoice}`);
-
-        } else {
-
-            alert(`Wrong answer. Let's try again!`);            
-
-        }                
+        } else 
+            alert(`Wrong answer. Let's try again!`);                           
     }
 
     return humChoice;
@@ -143,4 +138,46 @@ function playGame() {
     }
 }
 
-playGame();
+//playGame();
+
+const btnRock = document.querySelector("Rock");
+const btnPaper = document.querySelector("Paper");
+const btnScissors = document.querySelector("Scissors"); 
+
+const btn = document.querySelectorAll("button");
+
+function getHumanChoice_btn() {
+    let humChoice;
+
+    return humChoice = "rock";
+
+    while (condition) {
+
+        humChoice = prompt(
+            `What's You choice? Type it's full name:
+            1. Rock
+            2. Paper
+            3. Scissors`);
+        
+        humChoice = humChoice.toLowerCase();
+
+        if (humChoice === "rock" || humChoice === "paper" || humChoice === "scissors") {            
+            condition = false;
+            alert(`You chose: ${humChoice}`);
+        } else 
+            alert(`Wrong answer. Let's try again!`);                           
+    }
+
+    return humChoice;
+}
+
+btn.forEach((button) => {
+    button.addEventListener("click", () => {
+        let buttonID = button.id;
+
+        if(buttonID === "rock")
+            console.log("rock cliked");
+        else if (buttonID === "Paper")
+    
+        });
+});

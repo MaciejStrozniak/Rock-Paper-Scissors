@@ -1,5 +1,6 @@
 
 // TESTING NEW BRANCH ON GITHUB
+// SKODA EDITION
 
 let log = console.log;
 let humanScore = 0;

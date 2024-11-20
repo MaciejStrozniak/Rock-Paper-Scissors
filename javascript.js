@@ -140,44 +140,112 @@ function playGame() {
 
 //playGame();
 
-const btnRock = document.querySelector("Rock");
-const btnPaper = document.querySelector("Paper");
-const btnScissors = document.querySelector("Scissors"); 
+/////////////////////////////////////////////////////////////////////////
+
+const userChoice = document.querySelector("#userChoice");
+const compChoice = document.querySelector("#computerChoice");
+const roundResultElement = document.querySelector("#result");
+const playerScoresElement = document.querySelector("#playerScores");
+const computerScoresElement = document.querySelector("#computerScores");
 
 const btn = document.querySelectorAll("button");
 
-function getHumanChoice_btn() {
-    let humChoice;
+function showChoices(buttonID, computerChoice) {
+    if(buttonID === "rock") 
+        userChoice.textContent = `Your choice: rock!`;
+    else if (buttonID === "paper")
+        userChoice.textContent = `Your choice: paper`;
+    else
+        userChoice.textContent = `Your choice: scissors`;
 
-    return humChoice = "rock";
+    if(computerChoice === "rock")
+        compChoice.textContent = `Computer's choice: rock!`;
+    else if (computerChoice === "paper")
+        compChoice.textContent = `Computer's choice: paper`;
+    else
+        compChoice.textContent = `Computer's choice: scissors`;
+};
 
-    while (condition) {
+function playRound_new(humanChoice, computerChoice) {
 
-        humChoice = prompt(
-            `What's You choice? Type it's full name:
-            1. Rock
-            2. Paper
-            3. Scissors`);
-        
-        humChoice = humChoice.toLowerCase();
+    let roundScore = "";
 
-        if (humChoice === "rock" || humChoice === "paper" || humChoice === "scissors") {            
-            condition = false;
-            alert(`You chose: ${humChoice}`);
-        } else 
-            alert(`Wrong answer. Let's try again!`);                           
+    if(humanChoice === `rock`){
+        switch(computerChoice) {
+            case 'rock':
+                roundScore = 'draw';
+                break;
+            case 'paper':
+                roundScore = 'computer';
+                break;
+            case 'scissors':
+                roundScore = 'human';
+                break;
+        }
+    }
+    else if(humanChoice === 'paper'){
+        switch(computerChoice) {
+            case 'rock':
+                roundScore = 'human';
+                break;
+            case 'paper':
+                roundScore = 'draw';
+                break;
+            case 'scissors':
+                roundScore = 'computer';
+                break;
+        }
+    }
+    else {
+        switch(computerChoice) {
+            case 'rock':
+                roundScore = 'computer';
+                break;
+            case 'paper':
+                roundScore = 'human';
+                break;
+            case 'scissors':
+                roundScore = 'draw';
+                break;
+        }
     }
 
-    return humChoice;
+    return roundScore;
 }
+
+function showScores(roundResultVar) {
+    roundResultElement.textContent =  `Result: ${roundResultVar}`;
+}
+
+const sumScores = (() => {
+    let userScores = 0;
+    let computerScores = 0;
+
+    return function(roundResultVar) {
+        switch(roundResultVar) {
+            case 'human':
+                userScores ++;
+                playerScoresElement.textContent = `Player's scores: ${userScores}`;
+                break;
+            case 'computer':
+                computerScores ++;
+                computerScoresElement.textContent = `Computer's scores: ${computerScores}`;
+                break;
+            case 'draw':
+                break;            
+        }   
+    };
+})();
 
 btn.forEach((button) => {
     button.addEventListener("click", () => {
         let buttonID = button.id;
+        let computerChoiceVar = getComputerChoice();
+        let roundResultVar = playRound_new(buttonID, computerChoiceVar);
 
-        if(buttonID === "rock")
-            console.log("rock cliked");
-        else if (buttonID === "Paper")
-    
-        });
+        showChoices(buttonID, getComputerChoice());
+        showScores(roundResultVar);
+        sumScores(roundResultVar);
+        
+    });
 });

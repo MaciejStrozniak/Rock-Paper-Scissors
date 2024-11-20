@@ -1,4 +1,4 @@
-
+const btn = document.querySelectorAll("button");
 
 const userChoice = document.querySelector("#userChoice");
 const compChoice = document.querySelector("#computerChoice");
@@ -6,22 +6,30 @@ const roundResultElement = document.querySelector("#result");
 const playerScoresElement = document.querySelector("#playerScores");
 const computerScoresElement = document.querySelector("#computerScores");
 
-const btn = document.querySelectorAll("button");
-
 function showChoices(buttonID, computerChoice) {
+    
+    let rock = "rock";
+    let paper = "paper";
+    let scissors = "scissors";
+    
     if(buttonID === "rock") 
-        userChoice.textContent = `Your choice: rock!`;
+        userChoice.textContent = `Your choice: ${rock}!`;
     else if (buttonID === "paper")
-        userChoice.textContent = `Your choice: paper`;
+        userChoice.textContent = `Your choice: ${paper}`;
     else if(buttonID === "scissors")
-        userChoice.textContent = `Your choice: scissors`;
+        userChoice.textContent = `Your choice: ${scissors}`;
 
     if(computerChoice === "rock")
-        compChoice.textContent = `Computer's choice: rock!`;
+        compChoice.textContent = `Computer's choice: ${rock}!`;
     else if (computerChoice === "paper")
-        compChoice.textContent = `Computer's choice: paper`;
+        compChoice.textContent = `Computer's choice: ${paper}`;
     else
-        compChoice.textContent = `Computer's choice: scissors`;
+        compChoice.textContent = `Computer's choice: ${scissors}`;
+
+    if(buttonID === "reset") {
+        userChoice.textContent = "Your choice: ";
+        compChoice.textContent = "Computer's choice: ";
+    }
 };
 
 function getComputerChoice() {

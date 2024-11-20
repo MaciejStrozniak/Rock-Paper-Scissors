@@ -96,43 +96,86 @@ function showScores(roundResultVar) {
         roundResultElement.textContent =  `Result: ${roundResultVar}`;
     else
         roundResultElement.textContent =  `Result: `;
-
 }
 
 const sumScores = (() => {
     let userScores = 0;
     let computerScores = 0;
 
-    return function(roundResultVar) {
-        switch(roundResultVar) {
+    return function (roundResultVar) {
+        switch (roundResultVar) {
             case 'human':
-                userScores ++;
+                userScores++;
                 playerScoresElement.textContent = `Player's scores: ${userScores}`;
                 break;
             case 'computer':
-                computerScores ++;
+                computerScores++;
                 computerScoresElement.textContent = `Computer's scores: ${computerScores}`;
                 break;
             case 'draw':
-                break; 
-            case "reset":
+                break;
+            case 'reset':
                 userScores = 0;
                 computerScores = 0;
                 playerScoresElement.textContent = `Player's scores: ${userScores}`;
                 computerScoresElement.textContent = `Computer's scores: ${computerScores}`;
                 break;
-        }   
+        }
+        // Return the current scores as an object
+        return { userScores, computerScores };
     };
 })();
+
+function finishTheGame(scores) {
+    const playerWin = "AND THE WINNER IS! Player!";
+    const computerWin = "AND THE WINNER IS! Computer!";
+
+    if (scores.userScores === 5) {
+        alert(playerWin);
+        roundResultElement.textContent = `Result: ${playerWin}`;
+        disableButtons();
+    } else if (scores.computerScores === 5) {
+        alert(computerWin);
+        roundResultElement.textContent = `Result: ${computerWin}`;
+        disableButtons();
+    }
+}
+
+function disableButtons() {
+    btn.forEach((button) => {
+        if (button.id !== "reset") {
+            button.disabled = true; // Disable all buttons except the reset button
+        }
+    });
+}
+
+function enableButtons() {
+    btn.forEach((button) => {
+        button.disabled = false; // Enable all buttons
+    });
+}
 
 btn.forEach((button) => {
     button.addEventListener("click", () => {
         let buttonID = button.id;
-        let computerChoiceVar = getComputerChoice();
-        let roundResultVar = playRound_new(buttonID, computerChoiceVar);
 
-        showChoices(buttonID, computerChoiceVar);
-        showScores(roundResultVar);
-        sumScores(roundResultVar);
+        if (buttonID === "reset") {
+            sumScores("reset"); // Reset scores
+            roundResultElement.textContent = `Result: `;
+            showChoices(buttonID, ""); // Clear choices
+            enableButtons(); // Enable all buttons
+        } else {
+            let computerChoiceVar = getComputerChoice();
+            let roundResultVar = playRound_new(buttonID, computerChoiceVar);
+
+            showChoices(buttonID, computerChoiceVar);
+            showScores(roundResultVar);
+
+            // Get the current scores after updating them
+            const currentScores = sumScores(roundResultVar);
+
+            // Check if the game should finish
+            finishTheGame(currentScores);
+        }
     });
 });

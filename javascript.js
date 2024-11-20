@@ -38,6 +38,7 @@ function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * arrLength); 
     let computerChoice = choicesArr[randomNumber];
 
+    console.log(computerChoice);
     return computerChoice; 
 }
 
@@ -130,9 +131,8 @@ btn.forEach((button) => {
         let computerChoiceVar = getComputerChoice();
         let roundResultVar = playRound_new(buttonID, computerChoiceVar);
 
-        showChoices(buttonID, getComputerChoice());
+        showChoices(buttonID, computerChoiceVar);
         showScores(roundResultVar);
         sumScores(roundResultVar);
-        
     });
 });

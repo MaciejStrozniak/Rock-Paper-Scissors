@@ -127,8 +127,8 @@ const sumScores = (() => {
 })();
 
 function finishTheGame(scores) {
-    const playerWin = "AND THE WINNER IS! Player!";
-    const computerWin = "AND THE WINNER IS! Computer!";
+    const playerWin = "Player won!";
+    const computerWin = "Computer won!";
 
     if (scores.userScores === 5) {
         alert(playerWin);

@@ -1,3 +1,5 @@
+// NEW GIT TESTS
+
 const btn = document.querySelectorAll("button");
 
 const userChoice = document.querySelector("#userChoice");

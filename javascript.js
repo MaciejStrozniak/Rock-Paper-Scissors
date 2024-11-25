@@ -1,3 +1,5 @@
+// Testing branch connection with git commands
+
 const btn = document.querySelectorAll("button");
 
 const userChoice = document.querySelector("#userChoice");

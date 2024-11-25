@@ -1,6 +1,7 @@
 // Testing branch connection with git commands
 // Second try
 // Push to remote main and than pull to local tests from main
+// Final test before deleting tests branch nie wiem co się dzieje
 
 const btn = document.querySelectorAll("button");
 
